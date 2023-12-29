@@ -71,5 +71,17 @@ namespace Weather_React_DotNet_Project.Controllers
             await _userService.DeleteUserAsync(id);
             return NoContent();
         }
+        [HttpPost("login")]
+        public async Task<ActionResult<User>> Login(UserLoginDto userLoginDto)
+        {
+            var user = await _userService.AuthenticateUserAsync(userLoginDto.Username, userLoginDto.Password);
+
+            if (user == null)
+            {
+                return Unauthorized();
+            }
+
+            return Ok(user);
+        }
     }
 }

@@ -6,6 +6,14 @@ using Weather_React_DotNet_Project.Services;
 
 var builder = WebApplication.CreateBuilder(args);
 
+builder.Services.AddCors(options =>
+{
+    options.AddPolicy("AllowSpecificOrigin",
+        builder => builder.WithOrigins("https://localhost:44421")
+                          .AllowAnyHeader()
+                          .AllowAnyMethod());
+});
+
 // Add services to the container.
 
 builder.Services.AddScoped(typeof(IRepository<>), typeof(Repository<>));
@@ -31,6 +39,7 @@ builder.Services.AddDbContext<AppDbContext>(options =>
 });
 
 var app = builder.Build();
+app.UseCors("AllowSpecificOrigin"); 
 
 // Configure the HTTP request pipeline.
 if (!app.Environment.IsDevelopment())

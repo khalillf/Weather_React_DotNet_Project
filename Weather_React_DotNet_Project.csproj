@@ -32,10 +32,12 @@
   </ItemGroup>
 
   <ItemGroup>
+    <Compile Remove="ClientApp\src\components\conx\CreateUser.cs" />
     <Compile Remove="ClientApp\src\components\Google.cs" />
   </ItemGroup>
 
   <ItemGroup>
+    <Folder Include="ClientApp\public\css\" />
     <Folder Include="ClientApp\src\NewFolder\" />
     <Folder Include="ClientApp\src\Services\" />
   </ItemGroup>

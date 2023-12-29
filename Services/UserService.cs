@@ -1,4 +1,6 @@
-﻿using Weather_React_DotNet_Project.Models;
+﻿using Microsoft.EntityFrameworkCore;
+using MVC.data;
+using Weather_React_DotNet_Project.Models;
 using Weather_React_DotNet_Project.Repositories.Interfaces;
 
 namespace Weather_React_DotNet_Project.Services
@@ -6,10 +8,12 @@ namespace Weather_React_DotNet_Project.Services
     public class UserService
     {
         private readonly IUserRepository _userRepository;
+        private readonly AppDbContext _context;
 
-        public UserService(IUserRepository userRepository)
+        public UserService(IUserRepository userRepository, AppDbContext context)
         {
             _userRepository = userRepository;
+            _context = context;
         }
 
         public async Task<IEnumerable<User>> GetAllUsersAsync()
@@ -39,6 +43,16 @@ namespace Weather_React_DotNet_Project.Services
             await _userRepository.DeleteAsync(id);
             await _userRepository.SaveAsync();
         }
+        public async Task<User> AuthenticateUserAsync(string username, string password)
+        {
+            var user = await _context.User
+                                     .FirstOrDefaultAsync(u => u.Username == username && u.Password == password);
+
+            return user;
+        }
+
+
+
     }
 
 }
