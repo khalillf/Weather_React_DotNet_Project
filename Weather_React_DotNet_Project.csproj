@@ -32,6 +32,11 @@
   </ItemGroup>
 
   <ItemGroup>
+    <Compile Remove="ClientApp\src\components\Google.cs" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Folder Include="ClientApp\src\NewFolder\" />
     <Folder Include="ClientApp\src\Services\" />
   </ItemGroup>
 
