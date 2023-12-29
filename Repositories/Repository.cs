@@ -1,5 +1,6 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using MVC.data;
+using Weather_React_DotNet_Project.Repositories.Interfaces;
 
 namespace Weather_React_DotNet_Project.Repositories
 {

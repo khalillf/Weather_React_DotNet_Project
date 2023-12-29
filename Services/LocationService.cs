@@ -3,8 +3,8 @@
     using System.Collections.Generic;
     using System.Threading.Tasks;
     using Weather_React_DotNet_Project.Models;
-    using Weather_React_DotNet_Project.Repositories;
-   
+    using Weather_React_DotNet_Project.Repositories.Interfaces;
+
     public class LocationService
     {
         private readonly ILocationRepository _locationRepository;

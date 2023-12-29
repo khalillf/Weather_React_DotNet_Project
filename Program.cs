@@ -1,6 +1,7 @@
 using Microsoft.EntityFrameworkCore;
 using MVC.data;
 using Weather_React_DotNet_Project.Repositories;
+using Weather_React_DotNet_Project.Repositories.Interfaces;
 using Weather_React_DotNet_Project.Services;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -10,6 +11,14 @@ var builder = WebApplication.CreateBuilder(args);
 builder.Services.AddScoped(typeof(IRepository<>), typeof(Repository<>));
 builder.Services.AddScoped<ILocationRepository, LocationRepository>();
 builder.Services.AddScoped<LocationService>();
+builder.Services.AddScoped<IUserRepository, UserRepository>();
+builder.Services.AddScoped<UserService>();
+builder.Services.AddScoped<IUserPreferenceRepository, UserPreferenceRepository>();
+builder.Services.AddScoped<UserPreferenceService>();
+builder.Services.AddScoped<IWeatherDataRepository, WeatherDataRepository>();
+builder.Services.AddScoped<WeatherDataService>();
+builder.Services.AddScoped<IWeatherForecastRepository, WeatherForecastRepository>();
+builder.Services.AddScoped<WeatherForecastService>();
 
 
 builder.Services.AddControllersWithViews();
