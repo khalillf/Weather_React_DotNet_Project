@@ -12,6 +12,12 @@ function Login() {
         try {
             const response = await axios.post('https://localhost:7128/api/login', { username, password });
             console.log(response.data);
+            const userIdResponse = await axios.get(`https://localhost:7128/api/user/getUserId/${username}`);
+            const userId = userIdResponse.data;
+
+            localStorage.setItem('username', username);
+            localStorage.setItem('userId', userId);
+
             setLoginStatus({ success: true, message: 'Login successful!' });
         } catch (error) {
             console.error('Login failed:', error);

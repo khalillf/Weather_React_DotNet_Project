@@ -83,5 +83,19 @@ namespace Weather_React_DotNet_Project.Controllers
 
             return Ok(user);
         }
+
+        [HttpGet("getUserId/{username}")]
+        public async Task<ActionResult<int>> GetUserId(string username)
+        {
+            var user = await _userService.GetUserByUsernameAsync(username);
+
+            if (user == null)
+            {
+                return NotFound();
+            }
+
+            return Ok(user.UserID);
+        }
+
     }
 }

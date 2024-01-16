@@ -39,6 +39,8 @@ namespace Weather_React_DotNet_Project.Services
             await _weatherDataRepository.DeleteAsync(id);
             await _weatherDataRepository.SaveAsync();
         }
+
+
     }
 
 }

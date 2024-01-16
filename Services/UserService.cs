@@ -51,6 +51,11 @@ namespace Weather_React_DotNet_Project.Services
             return user;
         }
 
+        public async Task<User> GetUserByUsernameAsync(string username)
+        {
+            return await _context.User
+                                 .FirstOrDefaultAsync(u => u.Username == username);
+        }
 
 
     }

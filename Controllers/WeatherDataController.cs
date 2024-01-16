@@ -3,6 +3,8 @@ using Weather_React_DotNet_Project.Models;
 using Weather_React_DotNet_Project.Services;
 using System.Collections.Generic;
 using System.Threading.Tasks;
+using Newtonsoft.Json;
+using Weather_React_DotNet_Project.Models.NewFolder;
 
 namespace Weather_React_DotNet_Project.Controllers
 {
@@ -73,5 +75,41 @@ namespace Weather_React_DotNet_Project.Controllers
             await _weatherDataService.DeleteWeatherDataAsync(id);
             return NoContent();
         }
+            // ... existing code ...
+
+            [HttpGet("getWeatherByLocation/{latitude}/{longitude}")]
+            public async Task<ActionResult<WeatherData>> GetWeatherByLocation(double latitude, double longitude)
+            {
+                var apiKey = "4c48f19b198c12bc5d08aecd1b97dca4";
+                var url = $"https://api.openweathermap.org/data/2.5/weather?lat={latitude}&lon={longitude}&appid={apiKey}";
+
+                using (var httpClient = new HttpClient())
+                {
+                    var response = await httpClient.GetStringAsync(url);
+                    var apiResponse = JsonConvert.DeserializeObject<OpenWeatherResponse>(response);
+
+                    var weatherData = new WeatherData
+                    {
+                        Date = DateTime.UtcNow.Date,
+                        Time = DateTime.UtcNow.TimeOfDay,
+                        Temperature = ConvertKelvinToCelsius(apiResponse.Main.Temp),
+                        Humidity = apiResponse.Main.Humidity,
+                        Pressure = apiResponse.Main.Pressure,
+                        WindSpeed = (decimal)apiResponse.Wind.Speed,
+                        // Map other necessary fields
+                    };
+
+                    return Ok(weatherData);
+                }
+            }
+
+            private decimal ConvertKelvinToCelsius(double kelvinTemp)
+            {
+                return (decimal)(kelvinTemp - 273.15);
+            }
+        }
+
+
+
     }
-}
+
