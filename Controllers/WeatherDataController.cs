@@ -95,7 +95,6 @@ namespace Weather_React_DotNet_Project.Controllers
                         Temperature = ConvertKelvinToCelsius(apiResponse.Main.Temp),
                         Humidity = apiResponse.Main.Humidity,
                         Pressure = apiResponse.Main.Pressure,
-                        WindSpeed = (decimal)apiResponse.Wind.Speed,
                         // Map other necessary fields
                     };
 
