@@ -1,48 +1,65 @@
-import React, { Component } from 'react';
-import { Collapse, Navbar, NavbarBrand, NavbarToggler, NavItem, NavLink } from 'reactstrap';
+import React, { useState, useEffect } from 'react';
+import { Collapse, Navbar, NavbarBrand, NavbarToggler, NavItem, NavLink, Container } from 'reactstrap';
 import { Link } from 'react-router-dom';
+import { useAuth } from '../AuthContext';
 import './NavMenu.css';
 
-export class NavMenu extends Component {
-  static displayName = NavMenu.name;
+function NavMenu() {
+    const { user, logout } = useAuth();
+    const [collapsed, setCollapsed] = useState(true);
+    const [isUserLoggedIn, setIsUserLoggedIn] = useState(false);
 
-  constructor (props) {
-    super(props);
+    useEffect(() => {
+        const username = localStorage.getItem('username');
+        setIsUserLoggedIn(username !== null);
+    }, []);
 
-    this.toggleNavbar = this.toggleNavbar.bind(this);
-    this.state = {
-      collapsed: true
+    const toggleNavbar = () => {
+        setCollapsed(!collapsed);
     };
-  }
 
-  toggleNavbar () {
-    this.setState({
-      collapsed: !this.state.collapsed
-    });
-  }
+    const handleLogout = () => {
+        logout();
+        localStorage.removeItem('username'); // Remove the username from local storage
+        window.location.reload();
+    };
 
-  render() {
     return (
-      <header>
-        <Navbar className="navbar-expand-sm navbar-toggleable-sm ng-white border-bottom box-shadow mb-3" container light>
-                <NavbarBrand tag={Link} to="/">Weather Maroc </NavbarBrand>
-          <NavbarToggler onClick={this.toggleNavbar} className="mr-2" />
-          <Collapse className="d-sm-inline-flex flex-sm-row-reverse" isOpen={!this.state.collapsed} navbar>
-            <ul className="navbar-nav flex-grow">
-              <NavItem>
-                <NavLink tag={Link} className="text-dark" to="/">Home</NavLink>
-              </NavItem>
-             
-              <NavItem>
-                <NavLink tag={Link} className="text-dark" to="/login">Login</NavLink>
-              </NavItem>
-              <NavItem>
-               <NavLink tag={Link} className="text-dark" to="/signup">signup</NavLink>
-              </NavItem>
-            </ul>
-          </Collapse>
-        </Navbar>
-      </header>
+        <header>
+            <Navbar color="light" light expand="md" className="border-bottom box-shadow mb-3">
+                <Container>
+                    <NavbarBrand tag={Link} to="/">Weather Maroc</NavbarBrand>
+                    <NavbarToggler onClick={toggleNavbar} />
+                    <Collapse isOpen={!collapsed} navbar>
+                        <ul className="navbar-nav ml-auto">
+                            <NavItem>
+                                <NavLink tag={Link} to="/">Home</NavLink>
+                            </NavItem>
+                            {isUserLoggedIn ? (
+                                <>
+                                    <NavItem>
+                                        <span className="navbar-text">{localStorage.getItem('username')}</span>
+                                    </NavItem>
+                                    <NavItem>
+                                        <NavLink tag={Link} to="/" onClick={handleLogout}>Logout</NavLink>
+                                    </NavItem>
+                                </>
+                            ) : (
+                                <>
+                                    <NavItem>
+                                        <NavLink tag={Link} to="/login">Login</NavLink>
+                                    </NavItem>
+                                    <NavItem>
+                                        <NavLink tag={Link} to="/signup">Signup</NavLink>
+                                    </NavItem>
+                                </>
+                            )}
+                        </ul>
+                    </Collapse>
+                </Container>
+            </Navbar>
+        </header>
     );
-  }
 }
+
+export default NavMenu;

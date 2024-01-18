@@ -1,10 +1,13 @@
 import React, { Component } from 'react';
 import CardComponent from './CardComponent';
 import axios from 'axios';
+
+import WeatherInfo from './WeatherInfo'
 export class Home extends Component {
     static displayName = Home.name;
     state = {
-        currentCity: ''
+        currentCity: '',
+        weatherData: null
     };
 
     componentDidMount() {
@@ -24,6 +27,15 @@ export class Home extends Component {
         );
     }
 
+    fetchWeatherData = async (latitude, longitude) => {
+        try {
+            const response = await axios.get(`https://localhost:7128/api/WeatherData/getWeatherByLocation/${latitude}/${longitude}`);
+            console.log('Weather Data:', response.data);
+            this.setState({ weatherData: response.data });
+        } catch (error) {
+            console.error('Error fetching weather data:', error);
+        }
+    };
 
     saveWeatherData = async () => {
         const userId = localStorage.getItem('userId');
@@ -63,17 +75,6 @@ export class Home extends Component {
         }
     }
 
-    fetchWeatherData = async (latitude, longitude) => {
-        try {
-            console.log(latitude);
-            console.log(longitude);
-            const response = await axios.get(`https://localhost:7128/api/WeatherData/getWeatherByLocation/${latitude}/${longitude}`);
-            console.log('Weather Data:', response.data);
-            this.setState({ weatherData: response.data });
-        } catch (error) {
-            console.error('Error fetching weather data:', error);
-        }
-    };
 
     // Helper function to format the date and time
     formatDateAndTime() {
@@ -91,15 +92,16 @@ export class Home extends Component {
     }
 
     render() {
-        const { currentCity } = this.state;
+       
         const currentDateTime = this.formatDateAndTime();
         const imageUrl = 'https://localhost:44421/Carte.jpg';
-
+        const { currentCity, weatherData } = this.state;
         return (
             <div>
                 <h1>Weather Maroc - <span style={{ color: 'red' }}>{currentDateTime}</span></h1>
                 {currentCity && <h2>Current City: {currentCity}</h2>}
-                <CardComponent imageUrl={imageUrl} />
+                {weatherData && <WeatherInfo weatherData={weatherData} />}
+
             </div>
         );
     }

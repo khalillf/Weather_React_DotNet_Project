@@ -1,6 +1,12 @@
 {
   "dependencies": {
     "@react-google-maps/api": "^2.19.2",
-    "axios": "^1.6.3"
+    "axios": "^1.6.3",
+    "react-autosuggest": "^10.1.0",
+    "react-router-dom": "^6.21.2",
+    "reactstrap": "^9.2.1"
+  },
+  "devDependencies": {
+    "@types/react": "^18.2.48"
   }
 }

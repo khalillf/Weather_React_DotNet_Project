@@ -1,5 +1,6 @@
-﻿using System.ComponentModel.DataAnnotations.Schema;
+﻿using System;
 using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 
 namespace Weather_React_DotNet_Project.Models
 {
@@ -20,10 +21,13 @@ namespace Weather_React_DotNet_Project.Models
         public decimal WindSpeed { get; set; }
         public string? WindDirection { get; set; }
         public decimal Precipitation { get; set; }
+        public string WeatherCondition { get; set; }
+        public DateTime Sunrise { get; set; } // Sunrise field
+        public DateTime Sunset { get; set; } // Sunset field
+        public int Visibility { get; set; } // Visibility field
+        public int Cloudiness { get; set; } // Cloudiness field
 
         // Navigation property
         public virtual Location? Location { get; set; }
     }
-
-
 }
