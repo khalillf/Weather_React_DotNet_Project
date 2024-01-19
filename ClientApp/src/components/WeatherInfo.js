@@ -158,8 +158,6 @@ const WeatherInfo = () => {
                 }}
                 onSuggestionSelected={onSuggestionSelected}
             />
-            <button onClick={handlePostWeatherData}>Post Weather Data</button>
-
 
             {weatherData && additionalWeatherData && (
                 <div className="weather-data">
