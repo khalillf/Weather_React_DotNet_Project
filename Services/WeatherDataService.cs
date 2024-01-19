@@ -39,6 +39,11 @@ namespace Weather_React_DotNet_Project.Services
             await _weatherDataRepository.DeleteAsync(id);
             await _weatherDataRepository.SaveAsync();
         }
+        public async Task<IEnumerable<WeatherData>> GetWeatherDataByLocationIDAsync(int locationID)
+        {
+            return await _weatherDataRepository.GetByLocationIDAsync(locationID);
+        }
+
 
 
     }

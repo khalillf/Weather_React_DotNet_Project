@@ -4,18 +4,19 @@ import './WeatherHistory.css'; // Import your CSS file
 
 const WeatherHistory = () => {
     const [weatherHistory, setWeatherHistory] = useState([]);
+    const userId = localStorage.getItem('userId'); // Get the user ID from localStorage
 
     useEffect(() => {
-        // Fetch historical weather data for the user here
+        // Fetch historical weather data for the user by location ID
         axios
-            .get('https://localhost:7128/api/WeatherData')
+            .get(`https://localhost:7128/api/WeatherData/getWeatherByLocationID/${userId}`)
             .then((response) => {
                 setWeatherHistory(response.data);
             })
             .catch((error) => {
                 console.error('Error fetching historical weather data:', error);
             });
-    }, []);
+    }, [userId]); // Add userId to the dependency array
 
     return (
         <div className="weather-history">

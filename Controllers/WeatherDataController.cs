@@ -49,6 +49,20 @@ namespace Weather_React_DotNet_Project.Controllers
             return CreatedAtAction(nameof(GetWeatherData), new { id = weatherData.DataID }, weatherData);
         }
 
+        // GET: api/WeatherData/GetWeatherByLocationID/{locationID}
+        [HttpGet("GetWeatherByLocationID/{locationID}")]
+        public async Task<ActionResult<IEnumerable<WeatherData>>> GetWeatherByLocationID(int locationID)
+        {
+            var weatherData = await _weatherDataService.GetWeatherDataByLocationIDAsync(locationID);
+
+            if (weatherData == null)
+            {
+                return NotFound();
+            }
+
+            return Ok(weatherData);
+        }
+
 
         // PUT: api/WeatherData/5
         [HttpPut("{id}")]
