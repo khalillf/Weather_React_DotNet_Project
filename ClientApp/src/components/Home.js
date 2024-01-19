@@ -98,8 +98,7 @@ export class Home extends Component {
         const { currentCity, weatherData } = this.state;
         return (
             <div>
-                <h1>Weather Maroc - <span style={{ color: 'red' }}>{currentDateTime}</span></h1>
-                {currentCity && <h2>Current City: {currentCity}</h2>}
+                <h1>Weather Maroc - {currentCity} - <span style={{ color: 'red' }}>{currentDateTime}</span></h1>
                 {weatherData && <WeatherInfo weatherData={weatherData} />}
 
             </div>

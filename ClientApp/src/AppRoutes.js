@@ -3,6 +3,7 @@ import { FetchData } from "./components/FetchData";
 import { Home } from "./components/Home";
 import Login from "./components/conx/Login";
 import CreateUser from "./components/conx/CreateUser";
+import WeatherHistory from "./components/WeatherHistory";
 const AppRoutes = [
     {
         index: true,
@@ -23,6 +24,10 @@ const AppRoutes = [
     {
         path: '/login',
         element: <Login />
+    },
+    {
+        path: '/history',
+        element: <WeatherHistory />
     }
 ];
 

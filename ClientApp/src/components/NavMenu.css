@@ -1,58 +1,53 @@
-﻿/* NavMenu.css */
-
-/* Style for the overall Navbar */
-.navbar {
-    background-color: #f8f9fa; /* Light grey background */
-    border-bottom: 1px solid #e0e0e0; /* Border bottom */
+﻿﻿ /* NavMenu.css */
+/* Adjusted styling for navbar container */
+.container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-image: url('https://example.com/path/to/your/image.jpg'); /* Replace with the actual URL to your image */
+    background-size: cover; /* Ensure the background image covers the entire container */
+    background-repeat: no-repeat; /* Prevent background image from repeating */
+    padding: 10px 20px; /* Adjust padding for the navbar container */
 }
 
-/* Box shadow for Navbar */
-.box-shadow {
-    box-shadow: 0 .25rem .75rem rgba(0, 0, 0, .1); /* Subtle box shadow */
+.nav-menu-container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color: #ffffff; /* Dark grey background */
+    padding: 10px 20px; /* Adjust padding for the navbar container */
 }
-/* Ensure navbar items are aligned horizontally */
+
+/* Optional: Adjust padding for the navbar brand */
+.navbar-brand {
+    padding: 0.5rem 0;
+    color: #000; /* White text color for the brand */
+    font-size: 1.5rem; /* Adjust font size for the brand */
+}
+
+/* Updated styling for nav items */
 .navbar-nav {
     display: flex;
-    align-items: center; /* Align items vertically center */
+    align-items: center;
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
 }
 
-/* Style adjustments for NavItems, if necessary */
-.nav-item {
-    display: flex;
-    align-items: center; /* Align items vertically center */
-}
-
-
-/* Style for Navbar brand (logo or title) */
-.navbar-brand {
-    color: #333333; /* Dark color for brand text */
-    font-weight: bold; /* Bold font for brand */
-}
-
-/* Style for Navbar items */
-.navbar-nav .nav-item .nav-link {
-    color: #555555; /* Dark color for nav items */
-    margin-right: 1rem; /* Space between nav items */
-}
-
-    .navbar-nav .nav-item .nav-link:hover {
-        color: #007bff; /* Color change on hover */
+    .navbar-nav li {
+        margin-right: 15px;
     }
 
-/* Style for the current active link */
-.navbar-nav .nav-item .active {
-    color: #007bff; /* Highlight color for active nav item */
-    border-bottom: 2px solid #007bff; /* Bottom border for active nav item */
-}
+    /* Adjusted styling for nav links */
+    .navbar-nav a {
+        color: #000; /* White text color for the links */
+        text-decoration: none; /* Remove underline */
+        font-size: 1rem; /* Adjust font size for the links */
+    }
 
-/* Style for Navbar toggler (hamburger icon on small screens) */
-.navbar-toggler {
-    border: none; /* Remove default border */
-    outline: none; /* Remove focus outline */
-}
-
-/* Style for welcome message */
+/* Updated styling for Logout */
 .navbar-text {
-    color: #333333; /* Dark color for welcome text */
-    margin-right: 0.5rem; /* Right margin for spacing */
+    margin-right: 15px;
+    color: #000; /* White text color for the text */
+    font-size: 1rem; /* Adjust font size for the text */
 }

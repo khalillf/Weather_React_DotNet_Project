@@ -49,6 +49,7 @@ namespace Weather_React_DotNet_Project.Controllers
             return CreatedAtAction(nameof(GetWeatherData), new { id = weatherData.DataID }, weatherData);
         }
 
+
         // PUT: api/WeatherData/5
         [HttpPut("{id}")]
         public async Task<IActionResult> PutWeatherData(int id, WeatherData weatherData)

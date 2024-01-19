@@ -1,3 +1,5 @@
+// NavMenu.js
+
 import React, { useState, useEffect } from 'react';
 import { Collapse, Navbar, NavbarBrand, NavbarToggler, NavItem, NavLink, Container } from 'reactstrap';
 import { Link } from 'react-router-dom';
@@ -27,11 +29,16 @@ function NavMenu() {
     return (
         <header>
             <Navbar color="light" light expand="md" className="border-bottom box-shadow mb-3">
-                <Container>
+                <Container className="nav-menu-container">
+                    {/* Left-aligned Weather Maroc brand */}
                     <NavbarBrand tag={Link} to="/">Weather Maroc</NavbarBrand>
+
+                    {/* Navbar toggle button */}
                     <NavbarToggler onClick={toggleNavbar} />
+
+                    {/* Right-aligned nav items */}
                     <Collapse isOpen={!collapsed} navbar>
-                        <ul className="navbar-nav ml-auto">
+                        <ul className="navbar-nav">
                             <NavItem>
                                 <NavLink tag={Link} to="/">Home</NavLink>
                             </NavItem>
@@ -42,6 +49,9 @@ function NavMenu() {
                                     </NavItem>
                                     <NavItem>
                                         <NavLink tag={Link} to="/" onClick={handleLogout}>Logout</NavLink>
+                                    </NavItem>
+                                    <NavItem>
+                                        <NavLink tag={Link} to="/history" >History</NavLink>
                                     </NavItem>
                                 </>
                             ) : (
