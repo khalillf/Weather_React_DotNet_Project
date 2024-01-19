@@ -27,7 +27,5 @@ namespace Weather_React_DotNet_Project.Models
         public int Visibility { get; set; } // Visibility field
         public int Cloudiness { get; set; } // Cloudiness field
 
-        // Navigation property
-        public virtual Location? Location { get; set; }
     }
 }
